@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  py:
+    image: 'python:3.9.13-buster'
+    container_name: my_python
+    environment:
+      MY_SUPER_VARIABLE: superduper
+    stdin_open: true
+    tty: true 
+    networks:
+      - my_network
+  html:
+    image: nginx:1.23.1
+    container_name: my_html
+    ports:
+      - 8080:80
+    restart: always
+    volumes:
+      - ./html_data/:/usr/share/nginx/html/
+    networks:
+      - my_network
+
+networks:
+  my_network:
