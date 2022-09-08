@@ -1,0 +1,23 @@
+version: '3.8'
+
+# Example solution:
+services:
+  database:
+    container_name: postgres # this is the host-name of the server in PGAdmin
+    image: postgres:13.8
+    environment:
+      POSTGRES_USER: root # this is the username for the database
+      POSTGRES_PASSWORD: root # this is the password for the database
+      POSTGRES_DB: test_db 
+    ports:
+      - "5432:5432" # you do not need to expose the port actually for this particular assignment, if all you are doing is accessing the database from PGAdmin --> This is because docker containers are on the same network and already have access to all ports of each other. This port exposure just allows you to access the postgres database running on Docker from your host machine.
+    volumes:
+      - ./draft/pg_data/:/var/lib/postgresql/data/ # this is to make sure that the data in the database is preserved even if you destroy the container
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4:6.13
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com # the email
+      PGADMIN_DEFAULT_PASSWORD: root # the password
+    ports:
+      - "5050:80" # type localhost:5050 to your browser to access the UI
