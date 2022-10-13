@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: dellstore
+    database: dellstore
+    schema: public
+    tables: 
+      - name: categories
+      - name: cust_hist
+      - name: customers
+      - name: inventory
+      - name: orderlines
+      - name: orders
+      - name: products
+      - name: reorder
